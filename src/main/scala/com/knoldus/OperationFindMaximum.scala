@@ -3,6 +3,9 @@ package com.knoldus
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
+/**
+ * This is the main class where all operations are performed.
+ */
 class OperationFindMaximum {
   val user1: String = UsersParsing.getData("https://jsonplaceholder.typicode.com/users")
   val finalListUser: Future[List[Users]] = Future {
@@ -19,6 +22,12 @@ class OperationFindMaximum {
     CommentsParsing.parseComments(comment)
   }
 
+  /**
+   * findAnswers class is specific for finding the answers to queries like max posts and post with max comments
+   *
+   * @param choice - specifies whether to max posts or max commented post of user
+   * @return - user name
+   */
   def findAnswers(choice: String): Future[String] = {
     val listUsersWithPosts: Future[List[UsersWithPosts]] = Operations.findUsersWithPosts(finalListUser, finalListPost)
     val listPostsWithComments: Future[List[PostsWithComments]] = Operations.findPostsWithComments(finalListPost, finalListComments)

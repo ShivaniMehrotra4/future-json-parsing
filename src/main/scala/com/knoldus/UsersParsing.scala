@@ -14,8 +14,20 @@ object UsersParsing extends GetUrlData {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
+  /**
+   * This function returns extracted json data based on the URL given
+   *
+   * @param url - urls for users
+   * @return - extracted data in string
+   */
   override def getData(url: String): String = super.getData(url)
 
+  /**
+   * This function parses Json users data
+   *
+   * @param jsonUserData - contains extracted json format users data
+   * @return - list of users
+   */
   def parseUsers(jsonUserData: String): List[Users] = {
     val parsedUserData = net.liftweb.json.parse(jsonUserData)
     parsedUserData.children.map { users =>
