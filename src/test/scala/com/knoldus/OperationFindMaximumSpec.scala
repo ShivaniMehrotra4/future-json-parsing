@@ -22,4 +22,9 @@ class OperationFindMaximumSpec extends AsyncFlatSpec with BeforeAndAfterAll {
     val actualResult = max.findAnswers("comments")
     actualResult map { value => assert(value == "Clementina DuBuque") }
   }
+
+  "it " should " fail if anything other than posts/comments is entered " in {
+    val actualResult = max.findAnswers("aaaa")
+    actualResult map { value => assert(value == "Not valid") }
+  }
 }

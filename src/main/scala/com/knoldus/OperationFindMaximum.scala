@@ -36,9 +36,13 @@ class OperationFindMaximum {
       val userWithMaxPosts: Future[String] = Operations.findUserWithMaxPosts(listUsersWithPosts)
       userWithMaxPosts
     }
-    else {
+    else if(choice.toLowerCase == "comments") {
       val userForPostWithMaxComments: Future[String] = Operations.findUserWithMaxPostComments(listPostsWithComments, finalListUser)
       userForPostWithMaxComments
+    }
+    else {
+      val errorMessage:Future[String] = Future {"Not valid" }
+      errorMessage
     }
   }
 
